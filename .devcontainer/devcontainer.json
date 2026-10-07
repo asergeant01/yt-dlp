@@ -1,0 +1,33 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/debian
+{
+	"name": "Debian",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/base:trixie",
+	"features": {
+		"ghcr.io/devcontainers/features/python:1": {},
+		"ghcr.io/devcontainers-extra/features/apt-packages:1": {
+			"packages": "pandoc,ffmpeg"
+		}
+	},
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+
+	// Bind-mounts the host ytdlp directory (defaults to $HOME/ytdlp) into the container.
+	"mounts": [
+		"source=${localEnv:HOME}/ytdlp,target=/workspaces/yt-dlp/downloads,type=bind,consistency=cached"
+	],
+
+	// Build and install yt-dlp into the container after creation.
+	"postCreateCommand": "sudo make install",
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+}
